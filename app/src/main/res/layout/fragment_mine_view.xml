@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray"
+    android:orientation="vertical">
+    <!--    波浪背景和头像-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@color/main_color">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_gravity="center|top"
+            android:gravity="center"
+            android:text="我的主页"
+            android:textColor="@color/white" />
+
+        <com.qyh.myblog_android.widget.WaveView
+            android:id="@+id/wave_view"
+            android:layout_width="match_parent"
+            android:layout_height="15dp"
+            android:layout_alignParentBottom="true" />
+
+        <ImageView
+            android:id="@+id/iv_minefragment_icon"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_centerInParent="true" />
+
+        <TextView
+            android:id="@+id/tv_minefragment_username"
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_below="@+id/iv_minefragment_icon"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            />
+    </RelativeLayout>
+    <TextView
+        android:id="@+id/tv_minefragment_userinfo"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/selector_gray_deepgray"
+        android:gravity="center_vertical"
+        android:paddingLeft="15dp"
+        android:text="账号相关" />
+    <TextView
+        android:id="@+id/tv_minefragment_myblog"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/selector_gray_deepgray"
+        android:gravity="center_vertical"
+        android:paddingLeft="15dp"
+        android:text="我的博客" />
+    <TextView
+        android:id="@+id/tv_minefragment_createblog"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/selector_gray_deepgray"
+        android:gravity="center_vertical"
+        android:paddingLeft="15dp"
+        android:text="创建博客" />
+</LinearLayout>

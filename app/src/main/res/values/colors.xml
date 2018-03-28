@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3B90DF</color>
+    <color name="colorPrimaryDark">#3B90DF</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="transparent">#00000000</color>
+    <!--灰色分割线-->
+    <color name="gray_line">#cacaca</color>
+
+    <color name="colorBackground">#EEEEEE</color>
+    <color name="gray">#FFF0F0F0</color>
+    <color name="main_color">#3B90DF</color>
+    <color name="light_gray">#808080</color>
+    <color name="bottom_bg">#f3f5f9</color>
+    <color name="white">#ffffff</color>
+    <color name="chat_tip_color">#FFcccccc</color>
+    <color name="text_color3">#6b6b6b</color>
+    <color name="black">#000000</color>
+    <color name="blue_light">#ff33b5e5</color>
+    <color name="green_light">#ff99cc00</color>
+    <color name="orange_light">#ffff8800</color>
+    <color name="red_light">#ffcc0000</color>
+
+    <color name="text_color">#353535</color>
+    <color name="creator_name">#3E669A</color>
+
+</resources>
