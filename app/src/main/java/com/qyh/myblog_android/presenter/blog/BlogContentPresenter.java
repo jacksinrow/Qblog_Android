@@ -23,9 +23,13 @@ import com.qyh.myblog_android.app.Constants;
 import com.qyh.myblog_android.base.RxPresenter;
 import com.qyh.myblog_android.base.contract.blog.BlogContentContract;
 import com.qyh.myblog_android.model.DataManager;
-import com.qyh.myblog_android.model.bean.BlogContentBean;
+import com.qyh.myblog_android.model.bean.BlogDataBean;
+import com.qyh.myblog_android.model.bean.MyHttpResponse;
+import com.qyh.myblog_android.util.Logger;
 import com.qyh.myblog_android.util.RxUtil;
 import com.qyh.myblog_android.widget.CommonSubscriber;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -50,26 +54,26 @@ public class BlogContentPresenter extends RxPresenter<BlogContentContract.View> 
     @Override
     public void getBlogListData(int type, int page, int pageSize, final int requestType) {
         addSubscribe(mDataManager.getBlogList(type, page, pageSize)
-                .compose(RxUtil.<BlogContentBean>rxSchedulerHelper())
-                .subscribeWith(new CommonSubscriber<BlogContentBean>(mView) {
+                .compose(RxUtil.<MyHttpResponse<List<BlogDataBean>>>rxSchedulerHelper())
+                .compose(RxUtil.<List<BlogDataBean>>handleMyResult())
+                .subscribeWith(new CommonSubscriber<List<BlogDataBean>>(mView) {
                     @Override
-                    public void onNext(BlogContentBean blogContentBean) {
-                        if (blogContentBean != null) {
-                            if (blogContentBean.getStatus_code().equals(Constants.SUCCESS_CODE)) {
-                                if (blogContentBean.getData() != null && blogContentBean.getData().size() > 0) {
-                                    mView.showData(requestType, blogContentBean);
-                                } else {
-                                    if (requestType == Constants.TYPE_LOADMORE) {
-                                        mView.showNoMoreData();
-                                    } else {
-                                        mView.showEmptyView();
-                                    }
-                                }
+                    public void onNext(List<BlogDataBean> blogDataBeen) {
+                        if (blogDataBeen != null && blogDataBeen.size() > 0) {
+                            // TODO: 2018/3/29  此处处理的有点low，后期优化 id为-1 说明没有数据。。。为了避过rxjava返回空数据问题
+                            if (blogDataBeen.get(0).getId() != -1) {
+                                mView.showData(requestType, blogDataBeen);
                             } else {
-                                mView.stateError();
+                                if (requestType == Constants.TYPE_LOADMORE) {
+                                    mView.showNoMoreData();
+                                } else {
+                                    mView.showEmptyView();
+                                }
+
                             }
                         }
                     }
+
                 })
         );
     }

@@ -20,59 +20,46 @@
 package com.qyh.myblog_android.presenter.blog;
 
 import com.qyh.myblog_android.base.RxPresenter;
-import com.qyh.myblog_android.base.contract.blog.BlogMainContract;
+import com.qyh.myblog_android.base.contract.blog.BlogDetailContract;
+import com.qyh.myblog_android.base.contract.blog.BlogDetailContract.Presenter;
 import com.qyh.myblog_android.model.DataManager;
-import com.qyh.myblog_android.model.bean.BlogDataBean;
-import com.qyh.myblog_android.model.bean.BlogTypeBean;
+import com.qyh.myblog_android.model.bean.BlogDetailBean;
 import com.qyh.myblog_android.model.bean.MyHttpResponse;
 import com.qyh.myblog_android.util.RxUtil;
-import com.qyh.myblog_android.util.ToastUtil;
 import com.qyh.myblog_android.widget.CommonSubscriber;
-
-import java.util.List;
 
 import javax.inject.Inject;
 
 /**
- * 类  名： BlogMainPresenter
+ * 类  名： BlogDetailPresenter
  * 描  述：
  * 创建人： qyh
- * 日  期： 2018年03月20日 14:02
+ * 日  期： 2018年03月29日 15:21
  * 版本号： 1.0
  * <p>
  * Copyright (c) 2018 www.youkb.net Inc. All rights reserved
  */
-public class BlogMainPresenter extends RxPresenter<BlogMainContract.View> implements BlogMainContract.Presenter {
+public class BlogDetailPresenter extends RxPresenter<BlogDetailContract.View> implements Presenter {
 
     private DataManager mDataManager;
 
     @Inject
-    public BlogMainPresenter(DataManager manager) {
-        this.mDataManager = manager;
+    public BlogDetailPresenter(DataManager dataManager) {
+        this.mDataManager = dataManager;
     }
 
     @Override
-    public void getBlogTypeList() {
-        addSubscribe(mDataManager.getBlogTypeList()
-                .compose(RxUtil.<MyHttpResponse<List<BlogTypeBean>>>rxSchedulerHelper())
-                .compose(RxUtil.<List<BlogTypeBean>>handleMyResult())
-                .subscribeWith(new CommonSubscriber<List<BlogTypeBean>>(mView) {
+    public void getBlogDtail(int id) {
+        addSubscribe(mDataManager.getBlogDetail(id)
+                .compose(RxUtil.<MyHttpResponse<BlogDetailBean>>rxSchedulerHelper())
+                .compose(RxUtil.<BlogDetailBean>handleMyResult())
+                .subscribeWith(new CommonSubscriber<BlogDetailBean>(mView) {
                     @Override
-                    public void onNext(List<BlogTypeBean> blogTypeBean) {
-                        if (blogTypeBean != null) {
-                            if (blogTypeBean != null) {
-                                mView.showBlogTypeListData(blogTypeBean);
-                            }
-                        } else {
-                            ToastUtil.show("获取博客列表失败！");
-                        }
+                    public void onNext(BlogDetailBean blogDetailBean) {
+                        mView.showData(blogDetailBean);
                     }
                 })
         );
     }
-
-    @Override
-    public void getVideoNewsListData(String type, int page, int rand) {
-
-    }
 }
+

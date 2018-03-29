@@ -13,7 +13,6 @@ public class BlogDataBean implements Serializable {
      * type : 2
      * createTime : 2018-03-22 04:14:08 下午
      * title : 的点点滴滴多多顶顶顶顶
-     * content : 的点点滴滴多多顶顶顶顶多多多多顶顶顶顶
      * userBean : {"userId":"91d43c10-edbc-4427-a431-6c5852ad9967","phone":null,"userName":null}
      * userId : 91d43c10-edbc-4427-a431-6c5852ad9967
      */
@@ -22,9 +21,7 @@ public class BlogDataBean implements Serializable {
     private int type;
     private String createTime;
     private String title;
-    private String content;
     private UserBeanBean userBean;
-    private String userId;
 
     public int getId() {
         return id;
@@ -58,13 +55,6 @@ public class BlogDataBean implements Serializable {
         this.title = title;
     }
 
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
 
     public UserBeanBean getUserBean() {
         return userBean;
@@ -74,13 +64,6 @@ public class BlogDataBean implements Serializable {
         this.userBean = userBean;
     }
 
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
 
     @Override
     public String toString() {
@@ -89,30 +72,20 @@ public class BlogDataBean implements Serializable {
                 ", type=" + type +
                 ", createTime='" + createTime + '\'' +
                 ", title='" + title + '\'' +
-                ", content='" + content + '\'' +
                 ", userBean=" + userBean +
-                ", userId='" + userId + '\'' +
                 '}';
     }
 
-    public static class UserBeanBean  implements Serializable{
+    public static class UserBeanBean implements Serializable {
         /**
          * userId : 91d43c10-edbc-4427-a431-6c5852ad9967
          * phone : null
          * userName : null
          */
 
-        private String userId;
         private String phone;
         private String userName;
 
-        public String getUserId() {
-            return userId;
-        }
-
-        public void setUserId(String userId) {
-            this.userId = userId;
-        }
 
         public String getPhone() {
             return phone;
@@ -133,7 +106,6 @@ public class BlogDataBean implements Serializable {
         @Override
         public String toString() {
             return "UserBeanBean{" +
-                    "userId='" + userId + '\'' +
                     ", phone='" + phone + '\'' +
                     ", userName='" + userName + '\'' +
                     '}';

@@ -23,7 +23,11 @@ import android.app.IntentService;
 import android.content.Context;
 import android.content.Intent;
 
+import com.github.moduth.blockcanary.BlockCanary;
+import com.qyh.myblog_android.app.App;
 import com.qyh.myblog_android.util.CrashHandler;
+import com.qyh.myblog_android.widget.AppBlockCanaryContext;
+import com.squareup.leakcanary.LeakCanary;
 
 /**
  * 类  名： InitializeService
@@ -57,9 +61,15 @@ public class InitializeService extends IntentService {
     }
 
     private void initAppcation() {
-        // 初始化异常收集
+
         try {
+            // 初始化异常收集
             CrashHandler.getInstance().init(this);
+            //初始化内存泄漏检测
+            LeakCanary.install(App.getInstance());
+
+            //初始化过度绘制检测
+            BlockCanary.install(getApplicationContext(), new AppBlockCanaryContext()).start();
         } catch (Exception e) {
             e.printStackTrace();
         }

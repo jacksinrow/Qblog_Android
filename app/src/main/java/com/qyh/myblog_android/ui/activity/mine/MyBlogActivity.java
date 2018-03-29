@@ -19,21 +19,26 @@
 
 package com.qyh.myblog_android.ui.activity.mine;
 
+import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.view.View;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.qyh.myblog_android.R;
+import com.qyh.myblog_android.app.Constants;
 import com.qyh.myblog_android.base.RootActivity;
 import com.qyh.myblog_android.base.contract.blog.MyBlogListContract;
-import com.qyh.myblog_android.model.bean.BlogContentBean;
+import com.qyh.myblog_android.model.bean.BlogDataBean;
 import com.qyh.myblog_android.presenter.blog.MyBlogListPresenter;
+import com.qyh.myblog_android.ui.activity.blog.BlogDetailActivity;
 import com.qyh.myblog_android.ui.adapter.BlogContentAdapter;
 import com.qyh.myblog_android.util.AppUtils;
-import com.qyh.myblog_android.util.Logger;
-import com.qyh.myblog_android.util.ToastUtil;
 import com.qyh.myblog_android.widget.RecyclerViewDecoration;
+
+import java.util.List;
 
 import butterknife.BindView;
 
@@ -54,6 +59,8 @@ public class MyBlogActivity extends RootActivity<MyBlogListPresenter> implements
     Toolbar toolBar;
     private BlogContentAdapter mAdapter;
     private LinearLayoutManager mLayoutManger;
+    private String userId;
+    private List<BlogDataBean> mData;
 
     @Override
     protected int getLayout() {
@@ -75,28 +82,46 @@ public class MyBlogActivity extends RootActivity<MyBlogListPresenter> implements
         viewMain.addItemDecoration(new RecyclerViewDecoration(
                 mContext, LinearLayoutManager.HORIZONTAL, R.drawable.divider_mileage));
         viewMain.setAdapter(mAdapter);
+        mAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                Intent intent = new Intent(mContext, BlogDetailActivity.class);
+                intent.putExtra(Constants.BLOGCONTENT_TYPE, mData.get(position));
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
     protected void initEventAndData() {
         super.initEventAndData();
-        String userId = AppUtils.getUserId();
+        userId = AppUtils.getUserId();
         if (!TextUtils.isEmpty(userId)) {
             mPresenter.getBlogListData(userId);
         } else {
-            ToastUtil.show(mContext.getString(R.string.no_login));
+            startActivityForResult(LoginActivity.class, Constants.LOGIN_SUCCESS_FLAG);
         }
     }
 
     @Override
-    public void showData(BlogContentBean blogContentBean) {
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode) {
+            case Constants.LOGIN_SUCCESS_FLAG:
+                userId = AppUtils.getUserId();
+                mPresenter.getBlogListData(userId);
+                break;
+        }
+    }
+
+    @Override
+    public void showData(List<BlogDataBean> blogDataBeen) {
         stateMain();
-        mAdapter.setNewData(blogContentBean.getData());
+        mAdapter.setNewData(blogDataBeen);
     }
 
     @Override
     public void showEmptyView() {
-        Logger.e("没有数据====");
         stateEmpty();
     }
 }

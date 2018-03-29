@@ -19,8 +19,6 @@
 
 package com.qyh.myblog_android.model.bean;
 
-import java.util.List;
-
 /**
  * 类  名： BlogTypeBean
  * 描  述：博客类型实体类
@@ -31,72 +29,35 @@ import java.util.List;
  * Copyright (c) 2018 www.youkb.net Inc. All rights reserved
  */
 public class BlogTypeBean {
-
     /**
-     * status_code : 1
-     * msg : 请求成功
-     * data : [{"type_name":"全部","type_id":0},{"type_name":"设计模式","type_id":1},{"type_name":"Android基础","type_id":2},{"type_name":"Java基础","type_id":3},{"type_name":"源码原理","type_id":4},{"type_name":"View相关","type_id":5}]
+     * type_name : 全部
+     * type_id : 0
      */
 
-    private String status_code;
-    private String msg;
-    private List<DataBean> data;
+    private String type_name;
+    private int type_id;
 
-    public String getStatus_code() {
-        return status_code;
+    public String getTypName() {
+        return type_name;
     }
 
-    public void setStatus_code(String status_code) {
-        this.status_code = status_code;
+    public void setTypeName(String type_name) {
+        this.type_name = type_name;
     }
 
-    public String getMsg() {
-        return msg;
+    public int getTypeId() {
+        return type_id;
     }
 
-    public void setMsg(String msg) {
-        this.msg = msg;
+    public void setTypeId(int type_id) {
+        this.type_id = type_id;
     }
 
-    public List<DataBean> getData() {
-        return data;
-    }
-
-    public void setData(List<DataBean> data) {
-        this.data = data;
-    }
-
-    public static class DataBean {
-        /**
-         * type_name : 全部
-         * type_id : 0
-         */
-
-        private String type_name;
-        private int type_id;
-
-        public String getTypName() {
-            return type_name;
-        }
-
-        public void setTypeName(String type_name) {
-            this.type_name = type_name;
-        }
-
-        public int getTypeId() {
-            return type_id;
-        }
-
-        public void setTypeId(int type_id) {
-            this.type_id = type_id;
-        }
-
-        @Override
-        public String toString() {
-            return "DataBean{" +
-                    "type_name='" + type_name + '\'' +
-                    ", type_id=" + type_id +
-                    '}';
-        }
+    @Override
+    public String toString() {
+        return "DataBean{" +
+                "type_name='" + type_name + '\'' +
+                ", type_id=" + type_id +
+                '}';
     }
 }

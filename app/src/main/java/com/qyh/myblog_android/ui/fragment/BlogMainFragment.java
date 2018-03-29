@@ -57,7 +57,7 @@ public class BlogMainFragment extends BaseFragment<BlogMainPresenter> implements
     @BindView(R.id.vp_blog_main)
     ViewPager vpBlogMain;
     private BaseFragmentAdapter baseFragmentAdapter;
-    private List<BlogTypeBean.DataBean> blogTypeList;
+    private List<BlogTypeBean> blogTypeList;
 
     @Override
     protected int getLayoutId() {
@@ -84,8 +84,8 @@ public class BlogMainFragment extends BaseFragment<BlogMainPresenter> implements
 
 
     @Override
-    public void showBlogTypeListData(BlogTypeBean blogTypeBean) {
-        blogTypeList = blogTypeBean.getData();
+    public void showBlogTypeListData(List<BlogTypeBean> blogTypeBean) {
+        blogTypeList = blogTypeBean;
         initFragmenAdapter();
     }
 
@@ -111,7 +111,7 @@ public class BlogMainFragment extends BaseFragment<BlogMainPresenter> implements
 //        setPageChangeListener();
     }
 
-    private BlogContentFragment createListFragments(BlogTypeBean.DataBean typeBean) {
+    private BlogContentFragment createListFragments(BlogTypeBean typeBean) {
 
         BlogContentFragment blogContentFragment = new BlogContentFragment();
         Bundle bundle = new Bundle();

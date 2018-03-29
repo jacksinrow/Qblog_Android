@@ -4,17 +4,11 @@ package com.qyh.myblog_android.model.bean;
  * Created by qyh on 2018/3/22.
  */
 
-public class BaseBean {
-
-    /**
-     * status_code : 0
-     * msg : 该账号已注册
-     * data : null
-     */
+public class MyHttpResponse<T> {
 
     private String status_code;
     private String msg;
-    private Object data;
+    private T data;
 
     public String getStatus_code() {
         return status_code;
@@ -32,20 +26,11 @@ public class BaseBean {
         this.msg = msg;
     }
 
-    public Object getData() {
+    public T getData() {
         return data;
     }
 
-    public void setData(Object data) {
+    public void setData(T data) {
         this.data = data;
-    }
-
-    @Override
-    public String toString() {
-        return "BaseBean{" +
-                "status_code='" + status_code + '\'' +
-                ", msg='" + msg + '\'' +
-                ", data=" + data +
-                '}';
     }
 }

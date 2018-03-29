@@ -25,6 +25,7 @@ import android.app.Activity;
 import com.qyh.myblog_android.MainActivity;
 import com.qyh.myblog_android.di.module.ActivityModule;
 import com.qyh.myblog_android.di.scope.ActivityScope;
+import com.qyh.myblog_android.ui.activity.blog.BlogDetailActivity;
 import com.qyh.myblog_android.ui.activity.mine.CreateBlogActivity;
 import com.qyh.myblog_android.ui.activity.mine.LoginActivity;
 import com.qyh.myblog_android.ui.activity.mine.MyBlogActivity;
@@ -56,4 +57,7 @@ public interface ActivityComponent {
     void inject(MyBlogActivity myBlogActivity);
 
     void inject(CreateBlogActivity createBlogActivity);
+
+    void inject(BlogDetailActivity blogDetailActivity);
+
 }

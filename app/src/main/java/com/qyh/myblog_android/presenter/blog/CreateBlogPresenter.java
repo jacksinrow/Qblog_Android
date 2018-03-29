@@ -23,14 +23,13 @@ import com.qyh.myblog_android.app.Constants;
 import com.qyh.myblog_android.base.RxPresenter;
 import com.qyh.myblog_android.base.contract.blog.CreateBlogContract;
 import com.qyh.myblog_android.model.DataManager;
-import com.qyh.myblog_android.model.bean.BaseBean;
-import com.qyh.myblog_android.model.bean.BlogContentBean;
 import com.qyh.myblog_android.model.bean.BlogTypeBean;
-import com.qyh.myblog_android.util.Logger;
+import com.qyh.myblog_android.model.bean.MyHttpResponse;
 import com.qyh.myblog_android.util.RxUtil;
 import com.qyh.myblog_android.util.ToastUtil;
 import com.qyh.myblog_android.widget.CommonSubscriber;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
@@ -56,15 +55,16 @@ public class CreateBlogPresenter extends RxPresenter<CreateBlogContract.View> im
     @Override
     public void getBlogTypeList() {
         addSubscribe(mDataManager.getBlogTypeList()
-                .compose(RxUtil.<BlogTypeBean>rxSchedulerHelper())
-                .subscribeWith(new CommonSubscriber<BlogTypeBean>(mView) {
+                .compose(RxUtil.<MyHttpResponse<List<BlogTypeBean>>>rxSchedulerHelper())
+                .compose(RxUtil.<List<BlogTypeBean>>handleMyResult())
+                .subscribeWith(new CommonSubscriber<List<BlogTypeBean>>(mView) {
                     @Override
-                    public void onNext(BlogTypeBean blogTypeBean) {
-                        if(blogTypeBean != null) {
-                            if(blogTypeBean.getData() != null) {
-                                mView.showBlogTypeListData(blogTypeBean);
+                    public void onNext(List<BlogTypeBean> blogTypeBeen) {
+                        if (blogTypeBeen != null) {
+                            if (blogTypeBeen != null) {
+                                mView.showBlogTypeListData(blogTypeBeen);
                             }
-                        }else{
+                        } else {
                             ToastUtil.show("获取博客列表失败！");
                         }
                     }
@@ -75,10 +75,10 @@ public class CreateBlogPresenter extends RxPresenter<CreateBlogContract.View> im
     @Override
     public void addBlog(Map map) {
         addSubscribe(mDataManager.addBlog(map)
-                .compose(RxUtil.<BaseBean>rxSchedulerHelper())
-                .subscribeWith(new CommonSubscriber<BaseBean>(mView) {
+                .compose(RxUtil.<MyHttpResponse>rxSchedulerHelper())
+                .subscribeWith(new CommonSubscriber<MyHttpResponse>(mView) {
                     @Override
-                    public void onNext(BaseBean baseBean) {
+                    public void onNext(MyHttpResponse baseBean) {
                         if (baseBean != null && baseBean.getStatus_code().equals(Constants.SUCCESS_CODE)) {
                             mView.showSuccessMsg(baseBean.getMsg());
                         } else {

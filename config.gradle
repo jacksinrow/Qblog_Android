@@ -17,7 +17,7 @@ ext {
             dagger2     : "2.0.2",
             butterknife : "8.4.0",
             blockcanary : "1.2.1",
-            leakcanary  : "1.4-beta2"
+            leakcanary  : "1.5.4"
     ]
 
     dependencies = [
@@ -34,6 +34,7 @@ ext {
             "PhotoView"                 : "com.github.chrisbanes:PhotoView:1.3.0",
             "glide-transformations"     : "jp.wasabeef:glide-transformations:1.2.1",
             "html-textview"             : "org.sufficientlysecure:html-textview:3.1",
+            "BaseRecyclerViewAdapter"   :'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.30',
 
             //rx
             "rxjava"                    : "io.reactivex.rxjava2:rxjava:2.0.7",

@@ -12,6 +12,7 @@
         android:layout_height="match_parent">
 
         <com.qyh.myblog_android.widget.AutoTypeTextView
+            android:textSize="14sp"
             android:padding="10dp"
             android:textIsSelectable="true"
             android:id="@+id/tv_blogdetail_content"

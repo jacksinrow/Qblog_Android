@@ -23,8 +23,13 @@ import android.widget.TextView;
 
 import com.qyh.myblog_android.R;
 import com.qyh.myblog_android.app.Constants;
+import com.qyh.myblog_android.base.BaseActivity;
 import com.qyh.myblog_android.base.SimpleActivity;
+import com.qyh.myblog_android.base.contract.blog.BlogDetailContract;
 import com.qyh.myblog_android.model.bean.BlogDataBean;
+import com.qyh.myblog_android.model.bean.BlogDetailBean;
+import com.qyh.myblog_android.presenter.blog.BlogDetailPresenter;
+import com.qyh.myblog_android.util.Logger;
 import com.qyh.myblog_android.widget.AutoTypeTextView;
 
 import butterknife.BindView;
@@ -40,17 +45,23 @@ import butterknife.BindView;
  */
 
 
-public class BlogDetailActivity extends SimpleActivity {
+public class BlogDetailActivity extends BaseActivity<BlogDetailPresenter> implements BlogDetailContract.View {
 
     @BindView(R.id.tool_bar)
     Toolbar toolBar;
     @BindView(R.id.tv_blogdetail_content)
     AutoTypeTextView tvBlogdetailContent;
     private BlogDataBean mData;
+    private int blogId;
 
     @Override
     protected int getLayout() {
         return R.layout.activity_blogdetail;
+    }
+
+    @Override
+    protected void initInject() {
+        getActivityComponent().inject(this);
     }
 
     @Override
@@ -63,7 +74,13 @@ public class BlogDetailActivity extends SimpleActivity {
         mData = (BlogDataBean) getIntent().getSerializableExtra(Constants.BLOGCONTENT_TYPE);
         if (mData != null) {
             setToolBar(toolBar, mData.getTitle());
-            tvBlogdetailContent.setText(mData.getContent());
+            blogId = mData.getId();
         }
+        mPresenter.getBlogDtail(blogId);
+    }
+
+    @Override
+    public void showData(BlogDetailBean blogDetailBean) {
+        tvBlogdetailContent.setText(blogDetailBean.getDetail());
     }
 }

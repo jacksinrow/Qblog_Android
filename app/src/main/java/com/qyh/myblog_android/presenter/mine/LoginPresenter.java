@@ -25,7 +25,6 @@ import com.qyh.myblog_android.app.Constants;
 import com.qyh.myblog_android.base.RxPresenter;
 import com.qyh.myblog_android.base.contract.mine.LoginContract;
 import com.qyh.myblog_android.model.DataManager;
-import com.qyh.myblog_android.model.bean.BaseBean;
 import com.qyh.myblog_android.model.bean.UserInfoBean;
 import com.qyh.myblog_android.util.Logger;
 import com.qyh.myblog_android.util.RxUtil;

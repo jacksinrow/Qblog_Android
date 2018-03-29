@@ -21,8 +21,9 @@ package com.qyh.myblog_android.base.contract.blog;
 
 import com.qyh.myblog_android.base.BasePresenter;
 import com.qyh.myblog_android.base.BaseView;
-import com.qyh.myblog_android.model.bean.BlogContentBean;
 import com.qyh.myblog_android.model.bean.BlogTypeBean;
+
+import java.util.List;
 
 /**
  * 接口名： BlogMainContract
@@ -36,7 +37,7 @@ import com.qyh.myblog_android.model.bean.BlogTypeBean;
 public interface BlogMainContract {
 
     interface View extends BaseView {
-        void showBlogTypeListData(BlogTypeBean blogTypeBean);
+        void showBlogTypeListData(List<BlogTypeBean> blogTypeBean);
 
         void showNotData();
     }

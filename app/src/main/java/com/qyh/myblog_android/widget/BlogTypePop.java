@@ -24,7 +24,7 @@ public class BlogTypePop extends PopupWindow {
     private Activity mContext;
     private PopupWindow popupWindow;
     private OnBlogTypePopListener mListener;
-    private List<BlogTypeBean.DataBean> mData;
+    private List<BlogTypeBean> mData;
     private BlogTypeAdapter mAdapter;
     private int currentPositon = 0;
 
@@ -65,7 +65,7 @@ public class BlogTypePop extends PopupWindow {
         }
     }
 
-    public void setPopData(List<BlogTypeBean.DataBean> data) {
+    public void setPopData(List<BlogTypeBean> data) {
         this.mData = data;
         mData.remove(0);
         mAdapter.setNewData(data);

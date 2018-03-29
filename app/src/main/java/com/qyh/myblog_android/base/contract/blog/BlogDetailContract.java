@@ -21,31 +21,25 @@ package com.qyh.myblog_android.base.contract.blog;
 
 import com.qyh.myblog_android.base.BasePresenter;
 import com.qyh.myblog_android.base.BaseView;
-import com.qyh.myblog_android.model.bean.BlogTypeBean;
-
-import java.util.List;
-import java.util.Map;
+import com.qyh.myblog_android.model.bean.BlogDetailBean;
 
 /**
- * 接口名： CreateBlogContract
+ * 接口名： BlogDetailContract
  * 描  述：
  * 创建人： qyh
- * 日  期： 2018年03月24日 13:39
+ * 日  期： 2018年03月29日 15:19
  * 版本号： 1.0
  * <p>
  * Copyright (c) 2018 www.youkb.net Inc. All rights reserved
  */
-public interface CreateBlogContract {
+public interface BlogDetailContract {
     interface View extends BaseView {
-
-        void showSuccessMsg(String msg);
-        void showErrorssMsg(String msg);
-
-        void showBlogTypeListData(List<BlogTypeBean> bean);
+        void showData(BlogDetailBean blogDetailBean);
     }
 
-    interface Presenter extends BasePresenter<CreateBlogContract.View> {
-        void getBlogTypeList();
-        void addBlog(Map map);
+    interface Presenter extends BasePresenter<BlogDetailContract.View> {
+
+        void getBlogDtail(int id);
     }
 }
+

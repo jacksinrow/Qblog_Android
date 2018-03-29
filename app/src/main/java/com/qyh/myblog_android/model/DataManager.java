@@ -20,14 +20,16 @@
 package com.qyh.myblog_android.model;
 
 
-import com.qyh.myblog_android.model.bean.BaseBean;
-import com.qyh.myblog_android.model.bean.BlogContentBean;
+import com.qyh.myblog_android.model.bean.BlogDataBean;
+import com.qyh.myblog_android.model.bean.BlogDetailBean;
 import com.qyh.myblog_android.model.bean.BlogTypeBean;
+import com.qyh.myblog_android.model.bean.MyHttpResponse;
 import com.qyh.myblog_android.model.bean.UserInfoBean;
 import com.qyh.myblog_android.model.db.DBHelper;
 import com.qyh.myblog_android.model.helper.HttpHelper;
 import com.qyh.myblog_android.model.helper.PreferencesHelper;
 
+import java.util.List;
 import java.util.Map;
 
 import io.reactivex.Flowable;
@@ -54,7 +56,7 @@ public class DataManager implements HttpHelper, PreferencesHelper, DBHelper {
     }
 
     @Override
-    public Flowable<BaseBean> regist(String phone, String password, String userName) {
+    public Flowable<MyHttpResponse> regist(String phone, String password, String userName) {
         return mHttpHelper.regist(phone, password, userName);
     }
 
@@ -69,22 +71,27 @@ public class DataManager implements HttpHelper, PreferencesHelper, DBHelper {
     }
 
     @Override
-    public Flowable<BlogTypeBean> getBlogTypeList() {
+    public Flowable<MyHttpResponse <List<BlogTypeBean>>> getBlogTypeList() {
         return mHttpHelper.getBlogTypeList();
     }
 
     @Override
-    public Flowable<BlogContentBean> getBlogList(int type, int page, int pageSize) {
+    public Flowable<MyHttpResponse<List<BlogDataBean>>> getBlogList(int type, int page, int pageSize) {
         return mHttpHelper.getBlogList(type, page, pageSize);
     }
 
     @Override
-    public Flowable<BlogContentBean> getBlogListByid(String userId) {
+    public Flowable<MyHttpResponse<List<BlogDataBean>>> getBlogListByid(String userId) {
         return mHttpHelper.getBlogListByid(userId);
     }
 
     @Override
-    public Flowable<BaseBean> addBlog(Map map) {
+    public Flowable<MyHttpResponse> addBlog(Map map) {
         return mHttpHelper.addBlog(map);
+    }
+
+    @Override
+    public Flowable<MyHttpResponse <BlogDetailBean>> getBlogDetail(int id) {
+        return mHttpHelper.getBlogDetail(id);
     }
 }

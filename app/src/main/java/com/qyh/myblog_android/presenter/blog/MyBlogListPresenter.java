@@ -19,15 +19,15 @@
 
 package com.qyh.myblog_android.presenter.blog;
 
-import com.qyh.myblog_android.app.Constants;
 import com.qyh.myblog_android.base.RxPresenter;
 import com.qyh.myblog_android.base.contract.blog.MyBlogListContract;
 import com.qyh.myblog_android.model.DataManager;
-import com.qyh.myblog_android.model.bean.BlogContentBean;
-import com.qyh.myblog_android.util.Logger;
+import com.qyh.myblog_android.model.bean.BlogDataBean;
+import com.qyh.myblog_android.model.bean.MyHttpResponse;
 import com.qyh.myblog_android.util.RxUtil;
-import com.qyh.myblog_android.util.ToastUtil;
 import com.qyh.myblog_android.widget.CommonSubscriber;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -53,26 +53,20 @@ public class MyBlogListPresenter extends RxPresenter<MyBlogListContract.View> im
     @Override
     public void getBlogListData(String userId) {
         addSubscribe(mDataManager.getBlogListByid(userId)
-                .compose(RxUtil.<BlogContentBean>rxSchedulerHelper())
-                .subscribeWith(new CommonSubscriber<BlogContentBean>(mView) {
+                .compose(RxUtil.<MyHttpResponse<List<BlogDataBean>>>rxSchedulerHelper())
+                .compose(RxUtil.<List<BlogDataBean>>handleMyResult())
+                .subscribeWith(new CommonSubscriber<List<BlogDataBean>>(mView) {
                     @Override
-                    public void onNext(BlogContentBean blogContentBean) {
-                        Logger.e("我的博客===="+blogContentBean.toString());
-                        if (blogContentBean.getStatus_code().equals(Constants.SUCCESS_CODE)) {
-                            if (blogContentBean.getData() != null && blogContentBean.getData().size() > 0) {
-                                mView.showData(blogContentBean);
+                    public void onNext(List<BlogDataBean> blogDataBeen) {
+                        if (blogDataBeen != null && blogDataBeen.size() > 0) {
+                            if (blogDataBeen.get(0).getId() != -1) {
+                                mView.showData(blogDataBeen);
                             } else {
                                 mView.showEmptyView();
                             }
                         } else {
                             mView.showEmptyView();
                         }
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        super.onError(e);
-                        Logger.e(e.toString());
                     }
                 })
         );

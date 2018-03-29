@@ -20,11 +20,13 @@
 package com.qyh.myblog_android.model.api;
 
 
-import com.qyh.myblog_android.model.bean.BaseBean;
-import com.qyh.myblog_android.model.bean.BlogContentBean;
+import com.qyh.myblog_android.model.bean.BlogDataBean;
+import com.qyh.myblog_android.model.bean.BlogDetailBean;
 import com.qyh.myblog_android.model.bean.BlogTypeBean;
+import com.qyh.myblog_android.model.bean.MyHttpResponse;
 import com.qyh.myblog_android.model.bean.UserInfoBean;
 
+import java.util.List;
 import java.util.Map;
 
 import io.reactivex.Flowable;
@@ -33,7 +35,6 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
-import retrofit2.http.QueryMap;
 
 /**
  * 接口名： MyApis
@@ -51,8 +52,8 @@ public interface MyApis {
 
     // 用户注册
     @GET("/user/regist")
-    Flowable<BaseBean> regist(@Query("phone") String phone, @Query("password") String password,
-                              @Query("userName") String userName);
+    Flowable<MyHttpResponse> regist(@Query("phone") String phone, @Query("password") String password,
+                                    @Query("userName") String userName);
 
     // 用户登录
     @GET("/user/login")
@@ -64,19 +65,23 @@ public interface MyApis {
 
     // 获取博客分类
     @GET("/blog/getblogtype")
-    Flowable<BlogTypeBean> getBlogType();
+    Flowable<MyHttpResponse<List<BlogTypeBean>>> getBlogType();
 
     // 获取博客列表
     @GET("/blog/getbloglist")
-    Flowable<BlogContentBean> getBlogList(@Query("type") int type, @Query("page") int page
+    Flowable<MyHttpResponse<List<BlogDataBean>>> getBlogList(@Query("type") int type, @Query("page") int page
             , @Query("pageSize") int pageSize);
 
     // 通过用户id 获取博客
     @GET("/blog/getblogsbyid")
-    Flowable<BlogContentBean> getBlogListByUserid(@Query("userId") String userId);
+    Flowable<MyHttpResponse<List<BlogDataBean>>> getBlogListByUserid(@Query("userId") String userId);
 
     // 上传博客
     @FormUrlEncoded
     @POST("/blog/addblog")
-    Flowable<BaseBean> addBlog(@FieldMap Map<String,String> map);
+    Flowable<MyHttpResponse> addBlog(@FieldMap Map<String, String> map);
+
+    // 通过id获取博客详情
+    @GET("/blog/getblogdetail")
+    Flowable<MyHttpResponse<BlogDetailBean>> getBlogDetail(@Query("id") int id);
 }

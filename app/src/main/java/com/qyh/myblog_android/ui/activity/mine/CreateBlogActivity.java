@@ -39,6 +39,7 @@ import com.qyh.myblog_android.util.ToastUtil;
 import com.qyh.myblog_android.widget.BlogTypePop;
 
 import java.util.HashMap;
+import java.util.List;
 
 import butterknife.BindView;
 
@@ -117,7 +118,7 @@ public class CreateBlogActivity extends BaseActivity<CreateBlogPresenter> implem
     private void uploadBlog() {
 
         if (!TextUtils.isEmpty(AppUtils.getUserId())) {
-            if (!TextUtils.isEmpty(title) && !TextUtils.isEmpty(content)) {
+            if (!TextUtils.isEmpty(title) && !TextUtils.isEmpty(content) && blogType != 0 ) {
                 map = new HashMap<>();
                 map.put("userId", AppUtils.getUserId());
                 map.put("title", title);
@@ -151,8 +152,8 @@ public class CreateBlogActivity extends BaseActivity<CreateBlogPresenter> implem
     }
 
     @Override
-    public void showBlogTypeListData(BlogTypeBean bean) {
-        blogTypePop.setPopData(bean.getData());
+    public void showBlogTypeListData(List<BlogTypeBean> bean) {
+        blogTypePop.setPopData(bean);
         blogTypePop.showPopWindow(toolBar);
     }
 

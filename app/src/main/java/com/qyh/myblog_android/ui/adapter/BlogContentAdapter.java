@@ -21,14 +21,11 @@ package com.qyh.myblog_android.ui.adapter;
 
 import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
-import android.text.TextUtils;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.qyh.myblog_android.R;
-import com.qyh.myblog_android.model.bean.BlogContentBean;
 import com.qyh.myblog_android.model.bean.BlogDataBean;
-import com.qyh.myblog_android.util.Logger;
 
 import java.util.List;
 

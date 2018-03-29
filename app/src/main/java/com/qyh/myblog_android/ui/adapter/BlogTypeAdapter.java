@@ -22,7 +22,7 @@ public class BlogTypeAdapter extends BaseQuickAdapter {
 
     @Override
     protected void convert(BaseViewHolder helper, Object item) {
-        BlogTypeBean.DataBean dataBean = (BlogTypeBean.DataBean) item;
+        BlogTypeBean dataBean = (BlogTypeBean) item;
         helper.setText(R.id.tv_popu_blogtype,dataBean.getTypName());
     }
 }

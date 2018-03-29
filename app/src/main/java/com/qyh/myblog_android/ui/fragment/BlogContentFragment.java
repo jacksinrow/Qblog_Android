@@ -20,7 +20,6 @@
 package com.qyh.myblog_android.ui.fragment;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -31,17 +30,15 @@ import com.qyh.myblog_android.R;
 import com.qyh.myblog_android.app.Constants;
 import com.qyh.myblog_android.base.RootFragment;
 import com.qyh.myblog_android.base.contract.blog.BlogContentContract;
-import com.qyh.myblog_android.model.bean.BlogContentBean;
 import com.qyh.myblog_android.model.bean.BlogDataBean;
 import com.qyh.myblog_android.presenter.blog.BlogContentPresenter;
 import com.qyh.myblog_android.ui.activity.blog.BlogDetailActivity;
-import com.qyh.myblog_android.ui.activity.mine.CreateBlogActivity;
 import com.qyh.myblog_android.ui.adapter.BlogContentAdapter;
 import com.qyh.myblog_android.util.Logger;
-import com.qyh.myblog_android.util.ToastUtil;
 import com.qyh.myblog_android.widget.RecyclerViewDecoration;
 
-import java.io.Serializable;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -66,7 +63,7 @@ public class BlogContentFragment extends RootFragment<BlogContentPresenter> impl
     private LinearLayoutManager mLayoutManger;
     private int page = 1;
     private int pageSize = 6;
-    private List<BlogDataBean> mData;
+    private List<BlogDataBean> mData = new ArrayList<>();
 
     @Override
     protected int getLayoutId() {
@@ -109,7 +106,6 @@ public class BlogContentFragment extends RootFragment<BlogContentPresenter> impl
         mAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                Logger.e("position==="+position);
                 Intent intent = new Intent(mContext,BlogDetailActivity.class);
                 intent.putExtra(Constants.BLOGCONTENT_TYPE,  mData.get(position));
                 startActivity(intent);
@@ -126,17 +122,17 @@ public class BlogContentFragment extends RootFragment<BlogContentPresenter> impl
     }
 
     @Override
-    public void showData(int requestType, BlogContentBean blogContentBean) {
-        mData = blogContentBean.getData();
+    public void showData(int requestType, List<BlogDataBean> blogDataBean) {
+         mData.addAll(blogDataBean);
         stateMain();
         switch (requestType) {
             case Constants.TYPE_REFRESH:
                 refreshLayout.setRefreshing(false);
-                mAdapter.setNewData(blogContentBean.getData());
+                mAdapter.setNewData(blogDataBean);
                 mAdapter.disableLoadMoreIfNotFullPage(viewMain);
                 break;
             case Constants.TYPE_LOADMORE:
-                mAdapter.addData(blogContentBean.getData());
+                mAdapter.addData(blogDataBean);
                 mAdapter.loadMoreComplete();
                 break;
         }
@@ -145,6 +141,12 @@ public class BlogContentFragment extends RootFragment<BlogContentPresenter> impl
     @Override
     public void showEmptyView() {
         stateEmpty();
+    }
+
+    @Override
+    public void showErrorMsg(String msg) {
+        super.showErrorMsg(msg);
+        refreshLayout.setRefreshing(false);
     }
 
     @Override

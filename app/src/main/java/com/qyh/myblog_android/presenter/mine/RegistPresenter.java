@@ -25,7 +25,7 @@ import com.qyh.myblog_android.app.Constants;
 import com.qyh.myblog_android.base.RxPresenter;
 import com.qyh.myblog_android.base.contract.mine.RegistContract;
 import com.qyh.myblog_android.model.DataManager;
-import com.qyh.myblog_android.model.bean.BaseBean;
+import com.qyh.myblog_android.model.bean.MyHttpResponse;
 import com.qyh.myblog_android.util.Logger;
 import com.qyh.myblog_android.util.RxUtil;
 import com.qyh.myblog_android.widget.CommonSubscriber;
@@ -53,10 +53,10 @@ public class RegistPresenter extends RxPresenter<RegistContract.View> implements
     @Override
     public void regist(String phone, String password, String userName) {
         addSubscribe(mDataManager.regist(phone, password, userName)
-                .compose(RxUtil.<BaseBean>rxSchedulerHelper())
-                .subscribeWith(new CommonSubscriber<BaseBean>(mView) {
+                .compose(RxUtil.<MyHttpResponse>rxSchedulerHelper())
+                .subscribeWith(new CommonSubscriber<MyHttpResponse>(mView) {
                     @Override
-                    public void onNext(BaseBean baseBean) {
+                    public void onNext(MyHttpResponse baseBean) {
                         if (baseBean.getStatus_code().equals(Constants.SUCCESS_CODE)) {
                             Logger.e("註冊==="+baseBean.toString());
                             mView.registSuccess(baseBean.getMsg());

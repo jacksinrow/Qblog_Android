@@ -21,11 +21,13 @@ package com.qyh.myblog_android.model.helper;
 
 
 import com.qyh.myblog_android.model.api.MyApis;
-import com.qyh.myblog_android.model.bean.BaseBean;
-import com.qyh.myblog_android.model.bean.BlogContentBean;
+import com.qyh.myblog_android.model.bean.BlogDataBean;
+import com.qyh.myblog_android.model.bean.BlogDetailBean;
 import com.qyh.myblog_android.model.bean.BlogTypeBean;
+import com.qyh.myblog_android.model.bean.MyHttpResponse;
 import com.qyh.myblog_android.model.bean.UserInfoBean;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
@@ -51,7 +53,7 @@ public class RetrofitHelper implements HttpHelper {
     }
 
     @Override
-    public Flowable<BaseBean> regist(String phone, String password, String userName) {
+    public Flowable<MyHttpResponse> regist(String phone, String password, String userName) {
         return myApis.regist(phone, password, userName);
     }
 
@@ -66,22 +68,27 @@ public class RetrofitHelper implements HttpHelper {
     }
 
     @Override
-    public Flowable<BlogTypeBean> getBlogTypeList() {
+    public  Flowable<MyHttpResponse <List<BlogTypeBean>>> getBlogTypeList() {
         return myApis.getBlogType();
     }
 
     @Override
-    public Flowable<BlogContentBean> getBlogList(int type, int page, int pageSize) {
+    public Flowable<MyHttpResponse<List<BlogDataBean>>> getBlogList(int type, int page, int pageSize) {
         return myApis.getBlogList(type, page, pageSize);
     }
 
     @Override
-    public Flowable<BlogContentBean> getBlogListByid(String userId) {
+    public Flowable<MyHttpResponse<List<BlogDataBean>>> getBlogListByid(String userId) {
         return myApis.getBlogListByUserid(userId);
     }
 
     @Override
-    public Flowable<BaseBean> addBlog(Map map) {
+    public Flowable<MyHttpResponse> addBlog(Map map) {
         return myApis.addBlog(map);
+    }
+
+    @Override
+    public Flowable<MyHttpResponse<BlogDetailBean>> getBlogDetail(int id) {
+        return myApis.getBlogDetail(id);
     }
 }

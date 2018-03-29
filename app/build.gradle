@@ -63,6 +63,7 @@ dependencies {
 
     //ui
     compile rootProject.ext.dependencies["glide-transformations"]
+    compile rootProject.ext.dependencies["BaseRecyclerViewAdapter"]
     //rx
     compile rootProject.ext.dependencies["rxjava"]
     compile rootProject.ext.dependencies["rxandroid"]
@@ -96,8 +97,5 @@ dependencies {
     debugCompile rootProject.ext.dependencies["leakcanary-android"]
     releaseCompile rootProject.ext.dependencies["leakcanary-android-no-op"]
 
-    compile 'org.greenrobot:greendao:3.2.2'
-    // 调试工具Stetho，只在debug时使用
-    debugCompile 'com.facebook.stetho:stetho:1.5.0'
-    compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.30'
+//    compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.30'
 }

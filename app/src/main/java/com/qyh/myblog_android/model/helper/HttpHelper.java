@@ -19,11 +19,13 @@
 
 package com.qyh.myblog_android.model.helper;
 
-import com.qyh.myblog_android.model.bean.BaseBean;
-import com.qyh.myblog_android.model.bean.BlogContentBean;
+import com.qyh.myblog_android.model.bean.BlogDataBean;
+import com.qyh.myblog_android.model.bean.BlogDetailBean;
 import com.qyh.myblog_android.model.bean.BlogTypeBean;
+import com.qyh.myblog_android.model.bean.MyHttpResponse;
 import com.qyh.myblog_android.model.bean.UserInfoBean;
 
+import java.util.List;
 import java.util.Map;
 
 import io.reactivex.Flowable;
@@ -39,18 +41,20 @@ import io.reactivex.Flowable;
  */
 public interface HttpHelper {
     // ##################### 用户账号相关 ######################
-    Flowable<BaseBean> regist(String phone, String password, String userName);
+    Flowable<MyHttpResponse> regist(String phone, String password, String userName);
 
     Flowable<UserInfoBean> login(String phone, String password);
 
     Flowable<UserInfoBean> getUserInfo(String userId);
 
     // ##################### 博客相关 ######################
-    Flowable<BlogTypeBean> getBlogTypeList();
+    Flowable<MyHttpResponse<List<BlogTypeBean>>> getBlogTypeList();
 
-    Flowable<BlogContentBean> getBlogList(int type, int page, int pageSize);
+    Flowable<MyHttpResponse<List<BlogDataBean>>> getBlogList(int type, int page, int pageSize);
 
-    Flowable<BlogContentBean> getBlogListByid(String userId);
+    Flowable<MyHttpResponse<List<BlogDataBean>>> getBlogListByid(String userId);
 
-    Flowable<BaseBean> addBlog(Map map);
+    Flowable<MyHttpResponse> addBlog(Map map);
+
+    Flowable<MyHttpResponse<BlogDetailBean>> getBlogDetail(int id);
 }
