@@ -17,34 +17,48 @@
  * under the License.
  */
 
-package com.qyh.myblog_android.app;
-
-import java.io.File;
+package com.qyh.myblog_android.model.bean;
 
 /**
- * 类  名： Constants
+ * 类  名： VideoTypeBean
  * 描  述：
  * 创建人： qyh
- * 日  期： 2018年03月20日 21:51
+ * 日  期： 2018年03月30日 14:22
  * 版本号： 1.0
  * <p>
  * Copyright (c) 2018 www.youkb.net Inc. All rights reserved
  */
-public class Constants {
+public class VideoTypeBean {
 
+    /**
+     * video_type_name : 源码解析
+     * video_type_id : 1
+     */
 
-    public static final String PATH_DATA = App.getInstance().getCacheDir().getAbsolutePath() + File.separator + "data";
+    private String video_typename;
+    private int video_typeid;
 
-    public static final String PATH_CACHE = PATH_DATA + "/NetCache";
-    public static final String BLOG_TYPE = "blog_type";
-    public static final String VIDEO_TYPE = "video_type";
-    public static final String SUCCESS_CODE = "1"; // 成功状态码
-    public static final int LOGIN_SUCCESS_FLAG = 100; //
-    public static final String USERID = "userid"; //
+    public String getVideo_typename() {
+        return video_typename;
+    }
 
-    public static final int TYPE_REFRESH = 0x0;
-    public static final int TYPE_LOADMORE = 0x1;
+    public void setVideo_typename(String video_typename) {
+        this.video_typename = video_typename;
+    }
 
-    public static final String BLOGCONTENT_TYPE="blogcontent_type";
+    public int getVideo_typeid() {
+        return video_typeid;
+    }
 
+    public void setVideo_typeid(int video_typeid) {
+        this.video_typeid = video_typeid;
+    }
+
+    @Override
+    public String toString() {
+        return "VideoTypeBean{" +
+                "video_typename='" + video_typename + '\'' +
+                ", video_typeid=" + video_typeid +
+                '}';
+    }
 }

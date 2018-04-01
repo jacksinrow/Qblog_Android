@@ -25,6 +25,8 @@ import com.qyh.myblog_android.model.bean.BlogDetailBean;
 import com.qyh.myblog_android.model.bean.BlogTypeBean;
 import com.qyh.myblog_android.model.bean.MyHttpResponse;
 import com.qyh.myblog_android.model.bean.UserInfoBean;
+import com.qyh.myblog_android.model.bean.VideoDataBean;
+import com.qyh.myblog_android.model.bean.VideoTypeBean;
 
 import java.util.List;
 import java.util.Map;
@@ -47,9 +49,11 @@ import retrofit2.http.Query;
  */
 public interface MyApis {
 
-//    String HOST = "http://192.168.1.188:8081/";
-    String HOST = "http://101.132.165.105:8082/";
+    //        String HOST = "http://192.168.1.188:8082/";
+//    String HOST = "http://192.168.0.104:8082/";
+    String HOST = "http://101.132.165.105:8081/";
 
+    //=============账号===================
     // 用户注册
     @GET("/user/regist")
     Flowable<MyHttpResponse> regist(@Query("phone") String phone, @Query("password") String password,
@@ -63,6 +67,8 @@ public interface MyApis {
     @GET("/user/getuserinfo")
     Flowable<UserInfoBean> getUserInfo(@Query("userid") String userId);
 
+
+    //================博客===============
     // 获取博客分类
     @GET("/blog/getblogtype")
     Flowable<MyHttpResponse<List<BlogTypeBean>>> getBlogType();
@@ -84,4 +90,14 @@ public interface MyApis {
     // 通过id获取博客详情
     @GET("/blog/getblogdetail")
     Flowable<MyHttpResponse<BlogDetailBean>> getBlogDetail(@Query("id") int id);
+
+
+    //==================视频======================
+
+    @GET("/video/getvideotypelist")
+    Flowable<MyHttpResponse<List<VideoTypeBean>>> getVideoTypeList();
+
+    @GET("/video/getvideodatalist")
+    Flowable<MyHttpResponse<List<VideoDataBean>>> getVideoDataList(@Query("page") int page,
+                                                                   @Query("pageSize") int pageSize);
 }

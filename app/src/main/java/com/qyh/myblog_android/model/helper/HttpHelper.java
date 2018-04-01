@@ -24,6 +24,8 @@ import com.qyh.myblog_android.model.bean.BlogDetailBean;
 import com.qyh.myblog_android.model.bean.BlogTypeBean;
 import com.qyh.myblog_android.model.bean.MyHttpResponse;
 import com.qyh.myblog_android.model.bean.UserInfoBean;
+import com.qyh.myblog_android.model.bean.VideoDataBean;
+import com.qyh.myblog_android.model.bean.VideoTypeBean;
 
 import java.util.List;
 import java.util.Map;
@@ -57,4 +59,10 @@ public interface HttpHelper {
     Flowable<MyHttpResponse> addBlog(Map map);
 
     Flowable<MyHttpResponse<BlogDetailBean>> getBlogDetail(int id);
+
+    //#####################视频相关 ##########################
+
+    Flowable<MyHttpResponse<List<VideoTypeBean>>> getVideoTypeList();
+
+    Flowable<MyHttpResponse<List<VideoDataBean>>> getVideoDataList(int page, int pageSize);
 }

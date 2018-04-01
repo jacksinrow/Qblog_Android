@@ -117,6 +117,7 @@ public class MyBlogActivity extends RootActivity<MyBlogListPresenter> implements
     @Override
     public void showData(List<BlogDataBean> blogDataBeen) {
         stateMain();
+        mData = blogDataBeen;
         mAdapter.setNewData(blogDataBeen);
     }
 

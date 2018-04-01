@@ -17,34 +17,30 @@
  * under the License.
  */
 
-package com.qyh.myblog_android.app;
+package com.qyh.myblog_android.base.contract.video;
 
-import java.io.File;
+import com.qyh.myblog_android.base.BasePresenter;
+import com.qyh.myblog_android.base.BaseView;
+import com.qyh.myblog_android.model.bean.VideoTypeBean;
+
+import java.util.List;
 
 /**
- * 类  名： Constants
+ * 接口名： VideoMainContract
  * 描  述：
  * 创建人： qyh
- * 日  期： 2018年03月20日 21:51
+ * 日  期： 2018年03月30日 13:53
  * 版本号： 1.0
  * <p>
  * Copyright (c) 2018 www.youkb.net Inc. All rights reserved
  */
-public class Constants {
+public interface VideoMainContract {
+    interface View extends BaseView {
+        void showVideoTypeListData(List<VideoTypeBean> blogTypeBean);
+        void showNotData();
+    }
 
-
-    public static final String PATH_DATA = App.getInstance().getCacheDir().getAbsolutePath() + File.separator + "data";
-
-    public static final String PATH_CACHE = PATH_DATA + "/NetCache";
-    public static final String BLOG_TYPE = "blog_type";
-    public static final String VIDEO_TYPE = "video_type";
-    public static final String SUCCESS_CODE = "1"; // 成功状态码
-    public static final int LOGIN_SUCCESS_FLAG = 100; //
-    public static final String USERID = "userid"; //
-
-    public static final int TYPE_REFRESH = 0x0;
-    public static final int TYPE_LOADMORE = 0x1;
-
-    public static final String BLOGCONTENT_TYPE="blogcontent_type";
-
+    interface Presenter extends BasePresenter<VideoMainContract.View> {
+        void getVideoTypeList();
+    }
 }

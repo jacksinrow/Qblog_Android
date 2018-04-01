@@ -8,7 +8,8 @@ import com.qyh.myblog_android.di.scope.FragmentScope;
 import com.qyh.myblog_android.ui.fragment.BlogContentFragment;
 import com.qyh.myblog_android.ui.fragment.BlogMainFragment;
 import com.qyh.myblog_android.ui.fragment.MineFragment;
-import com.qyh.myblog_android.ui.fragment.RestsFragment;
+import com.qyh.myblog_android.ui.fragment.VideoContentFragment;
+import com.qyh.myblog_android.ui.fragment.VideoMainFragment;
 
 import dagger.Component;
 
@@ -31,7 +32,9 @@ public interface FragmentComponent {
 
     void inject(BlogContentFragment blogContentFragment);
 //
-//    void inject(RestsFragment restsFragment);
+    void inject(VideoMainFragment videoMainFragment);
 //
     void inject(MineFragment mineFragment);
+
+    void inject(VideoContentFragment videoContentFragment);
 }

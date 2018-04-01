@@ -25,6 +25,8 @@ import com.qyh.myblog_android.model.bean.BlogDetailBean;
 import com.qyh.myblog_android.model.bean.BlogTypeBean;
 import com.qyh.myblog_android.model.bean.MyHttpResponse;
 import com.qyh.myblog_android.model.bean.UserInfoBean;
+import com.qyh.myblog_android.model.bean.VideoDataBean;
+import com.qyh.myblog_android.model.bean.VideoTypeBean;
 import com.qyh.myblog_android.model.db.DBHelper;
 import com.qyh.myblog_android.model.helper.HttpHelper;
 import com.qyh.myblog_android.model.helper.PreferencesHelper;
@@ -93,5 +95,15 @@ public class DataManager implements HttpHelper, PreferencesHelper, DBHelper {
     @Override
     public Flowable<MyHttpResponse <BlogDetailBean>> getBlogDetail(int id) {
         return mHttpHelper.getBlogDetail(id);
+    }
+
+    @Override
+    public Flowable<MyHttpResponse<List<VideoTypeBean>>> getVideoTypeList() {
+        return mHttpHelper.getVideoTypeList();
+    }
+
+    @Override
+    public Flowable<MyHttpResponse<List<VideoDataBean>>> getVideoDataList(int page, int pageSize) {
+        return mHttpHelper.getVideoDataList(page,pageSize);
     }
 }

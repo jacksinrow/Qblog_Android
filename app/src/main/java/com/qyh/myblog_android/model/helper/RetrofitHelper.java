@@ -26,6 +26,8 @@ import com.qyh.myblog_android.model.bean.BlogDetailBean;
 import com.qyh.myblog_android.model.bean.BlogTypeBean;
 import com.qyh.myblog_android.model.bean.MyHttpResponse;
 import com.qyh.myblog_android.model.bean.UserInfoBean;
+import com.qyh.myblog_android.model.bean.VideoDataBean;
+import com.qyh.myblog_android.model.bean.VideoTypeBean;
 
 import java.util.List;
 import java.util.Map;
@@ -68,7 +70,7 @@ public class RetrofitHelper implements HttpHelper {
     }
 
     @Override
-    public  Flowable<MyHttpResponse <List<BlogTypeBean>>> getBlogTypeList() {
+    public Flowable<MyHttpResponse<List<BlogTypeBean>>> getBlogTypeList() {
         return myApis.getBlogType();
     }
 
@@ -90,5 +92,15 @@ public class RetrofitHelper implements HttpHelper {
     @Override
     public Flowable<MyHttpResponse<BlogDetailBean>> getBlogDetail(int id) {
         return myApis.getBlogDetail(id);
+    }
+
+    @Override
+    public Flowable<MyHttpResponse<List<VideoTypeBean>>> getVideoTypeList() {
+        return myApis.getVideoTypeList();
+    }
+
+    @Override
+    public Flowable<MyHttpResponse<List<VideoDataBean>>> getVideoDataList(int page, int pageSize) {
+        return myApis.getVideoDataList(page, pageSize);
     }
 }

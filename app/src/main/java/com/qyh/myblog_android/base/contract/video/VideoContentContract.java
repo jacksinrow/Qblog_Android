@@ -17,20 +17,35 @@
  * under the License.
  */
 
-package com.qyh.myblog_android.ui.fragment;
+package com.qyh.myblog_android.base.contract.video;
 
-import android.support.v4.app.Fragment;
+import com.qyh.myblog_android.base.BasePresenter;
+import com.qyh.myblog_android.base.BaseView;
+import com.qyh.myblog_android.model.bean.VideoDataBean;
+
+import java.util.List;
 
 /**
- * 类  名： RestsFragment
- * 描  述： 空白类
+ * 接口名： VideoContentContract
+ * 描  述：
  * 创建人： qyh
- * 日  期： 2018年03月20日 13:40
+ * 日  期： 2018年03月31日 21:21
  * 版本号： 1.0
  * <p>
  * Copyright (c) 2018 www.youkb.net Inc. All rights reserved
  */
-public class RestsFragment extends Fragment {
+public interface VideoContentContract {
+    interface View extends BaseView {
+        void showData(int requestType,List<VideoDataBean> blogDataBean);
 
+        void showEmptyView();
 
+        void showNoMoreData();
+
+    }
+
+    interface Presenter extends BasePresenter<VideoContentContract.View> {
+
+        void getVideoListData(int page, int pageSize,int requestType);
+    }
 }

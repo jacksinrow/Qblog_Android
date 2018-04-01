@@ -13,7 +13,7 @@ import com.qyh.myblog_android.app.AppManager;
 import com.qyh.myblog_android.base.SimpleActivity;
 import com.qyh.myblog_android.ui.fragment.BlogMainFragment;
 import com.qyh.myblog_android.ui.fragment.MineFragment;
-import com.qyh.myblog_android.ui.fragment.RestsFragment;
+import com.qyh.myblog_android.ui.fragment.VideoMainFragment;
 import com.qyh.myblog_android.util.ToastUtil;
 import com.youkb.mylibrary.BottomNavigationView.BottomNavigationItem;
 import com.youkb.mylibrary.BottomNavigationView.BottomNavigationView;
@@ -28,7 +28,7 @@ public class MainActivity extends SimpleActivity{
     BottomNavigationView bottomNavigationView;
     private BlogMainFragment blogMainFragment;
     private MineFragment mineFragment;
-    private RestsFragment restsFragment;
+    private VideoMainFragment videoMainFragment;
 
     // 退出时间
     private long currentBackPressedTime = 0;
@@ -59,7 +59,7 @@ public class MainActivity extends SimpleActivity{
         BottomNavigationItem bottomNavigationItem = new BottomNavigationItem
                 ("博客", color[0], image[0]);
         BottomNavigationItem bottomNavigationItem1 = new BottomNavigationItem
-                ("其他", color[1], image[1]);
+                ("视频", color[1], image[1]);
         BottomNavigationItem bottomNavigationItem2 = new BottomNavigationItem
                 ("我的", color[2], image[2]);
 
@@ -99,15 +99,15 @@ public class MainActivity extends SimpleActivity{
         if (savedInstanceState != null) {
             blogMainFragment = (BlogMainFragment) getSupportFragmentManager().findFragmentByTag("blogMainFragment");
             mineFragment = (MineFragment) getSupportFragmentManager().findFragmentByTag("mineFragment");
-            restsFragment = (RestsFragment) getSupportFragmentManager().findFragmentByTag("restsFragment");
+            videoMainFragment = (VideoMainFragment) getSupportFragmentManager().findFragmentByTag("videoMainFragment");
         } else {
             blogMainFragment = new BlogMainFragment();
             mineFragment = new MineFragment();
-            restsFragment = new RestsFragment();
+            videoMainFragment = new VideoMainFragment();
 
             transaction.add(R.id.fl_body, blogMainFragment, "blogMainFragment");
             transaction.add(R.id.fl_body, mineFragment, "mineFragment");
-            transaction.add(R.id.fl_body, restsFragment, "restsFragment");
+            transaction.add(R.id.fl_body, videoMainFragment, "videoMainFragment");
         }
         transaction.commit();
         SwitchTo(currentTabPosition);
@@ -122,19 +122,19 @@ public class MainActivity extends SimpleActivity{
         switch (position) {
             case 0:
                 transaction.hide(mineFragment);
-                transaction.hide(restsFragment);
+                transaction.hide(videoMainFragment);
                 transaction.show(blogMainFragment);
                 transaction.commitAllowingStateLoss();
                 break;
             case 1:
                 transaction.hide(blogMainFragment);
                 transaction.hide(mineFragment);
-                transaction.show(restsFragment);
+                transaction.show(videoMainFragment);
                 transaction.commitAllowingStateLoss();
                 break;
             case 2:
                 transaction.hide(blogMainFragment);
-                transaction.hide(restsFragment);
+                transaction.hide(videoMainFragment);
                 transaction.show(mineFragment);
                 transaction.commitAllowingStateLoss();
                 break;
