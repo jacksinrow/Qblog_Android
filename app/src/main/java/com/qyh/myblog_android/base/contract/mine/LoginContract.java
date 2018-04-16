@@ -30,7 +30,7 @@ import com.qyh.myblog_android.model.bean.UserInfoBean;
  * 日  期： 2018年03月21日 22:03
  * 版本号： 1.0
  * <p>
- * Copyright (c) 2018 www.youkb.net Inc. All rights reserved
+ * Copyright (c) 2018 www.g7.com.cn Inc. All rights reserved
  */
 public interface LoginContract {
     interface View extends BaseView {

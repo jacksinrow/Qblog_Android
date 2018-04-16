@@ -3,7 +3,7 @@ package com.qyh.myblog_android.model.bean;
 import java.io.Serializable;
 
 /**
- * Created by adminn on 2018/3/27.
+ * Created by qyh on 2018/3/27.
  */
 
 public class BlogDataBean implements Serializable {

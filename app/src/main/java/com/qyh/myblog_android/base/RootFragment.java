@@ -33,7 +33,7 @@ import com.qyh.myblog_android.R;
  * 日  期： 2018年03月19日 22:41
  * 版本号： 1.0
  * <p>
- * Copyright (c) 2018 www.youkb.net Inc. All rights reserved
+ * Copyright (c) 2018 www.g7.com.cn Inc. All rights reserved
  */
 public abstract class RootFragment<T extends BasePresenter> extends BaseFragment<T> {
 

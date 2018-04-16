@@ -39,7 +39,7 @@ import cn.jzvd.JZVideoPlayerStandard;
  * 日  期： 2018年03月31日 21:35
  * 版本号： 1.0
  * <p>
- * Copyright (c) 2018 www.youkb.net Inc. All rights reserved
+ * Copyright (c) 2018 www.g7.com.cn Inc. All rights reserved
  */
 public class VideoContentAdapter extends BaseQuickAdapter {
     public VideoContentAdapter(@LayoutRes int layoutResId, @Nullable List data) {

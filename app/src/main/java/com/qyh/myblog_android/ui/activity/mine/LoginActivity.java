@@ -54,7 +54,7 @@ import butterknife.OnClick;
  * 日  期： 2018年03月21日 22:06
  * 版本号： 1.0
  * <p>
- * Copyright (c) 2018 www.youkb.net Inc. All rights reserved
+ * Copyright (c) 2018 www.g7.com.cn Inc. All rights reserved
  */
 public class LoginActivity extends BaseActivity<LoginPresenter> implements LoginContract.View, KeyboardWatcher.SoftKeyboardStateListener {
     @BindView(R.id.et_login_phone)

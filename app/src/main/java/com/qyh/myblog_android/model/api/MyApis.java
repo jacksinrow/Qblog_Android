@@ -45,11 +45,9 @@ import retrofit2.http.Query;
  * 日  期： 2018年01月16日 17:43
  * 版本号： 1.0
  * <p>
- * Copyright (c) 2018 www.youkb.net Inc. All rights reserved
+ * Copyright (c) 2018 www.g7.com.cn Inc. All rights reserved
  */
 public interface MyApis {
-
-    //        String HOST = "http://192.168.1.188:8082/";
 //    String HOST = "http://192.168.0.104:8082/";
     String HOST = "http://101.132.165.105:8081/";
 

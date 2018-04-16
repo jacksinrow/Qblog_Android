@@ -26,7 +26,7 @@ package com.qyh.myblog_android.model.helper;
  * 日  期： 2018年03月17日 22:56
  * 版本号： 1.0
  * <p>
- * Copyright (c) 2018 www.youkb.net Inc. All rights reserved
+ * Copyright (c) 2018 www.g7.com.cn Inc. All rights reserved
  */
 public interface PreferencesHelper {
 }

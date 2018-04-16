@@ -34,7 +34,7 @@ import retrofit2.HttpException;
  * 日  期： 2018年03月18日 21:51
  * 版本号： 1.0
  * <p>
- * Copyright (c) 2018 www.youkb.net Inc. All rights reserved
+ * Copyright (c) 2018 www.g7.com.cn Inc. All rights reserved
  */
 public abstract class CommonSubscriber<T> extends ResourceSubscriber<T> {
     private BaseView mView;
